@@ -32,7 +32,6 @@ python main.py --mode=train --context_emb=bert
 
 # About Dataset
 
-If you have the LDC license for OntoNotes, please send me the proof (e.g., screenshot) and I can share the preprocessed OntoNotes datasets.
 Note that we use the data from 4 columns: word, dependency head index, dependency relation label, and entity label.
 
 
