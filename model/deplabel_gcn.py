@@ -82,25 +82,6 @@ class DepLabeledGCN(nn.Module):
         feature_out = torch.cat((lstm_out, lstm_out_b), dim=2)
         feature_out = self.drop_lstm(feature_out)
 
-
-        # gcn_inputs1 = self.drop_lstm(feature_out)
-        # c1 = adj_matrix.bmm(gcn_inputs1)
-        # lstm_out1 = self.lstm1(gcn_inputs1, c1)
-        # word_rep_b1 = masked_flip(gcn_inputs1, word_seq_len.tolist())
-        # c_b1 = masked_flip(c1, word_seq_len.tolist())
-        # lstm_out_b1 = self.lstm_b1(word_rep_b1, c_b1)
-        # lstm_out_b1 = masked_flip(lstm_out_b1, word_seq_len.tolist())
-        # feature_out1 = torch.cat((lstm_out1, lstm_out_b1), dim=2)
-
-        # feature_out1 = self.drop_lstm(feature_out1)
-
-        # lstm_out1 = self.lstm1(feature_out)
-        # word_rep_b1 = masked_flip(feature_out, word_seq_lens.tolist())
-        # lstm_out_b1 = self.lstm_b1(word_rep_b1)
-        # lstm_out_b1 = masked_flip(lstm_out_b1, word_seq_lens.tolist())
-        # feature_out1 = torch.cat((lstm_out1, lstm_out_b1), dim=2)
-
-
         return feature_out
         
 class MyLSTM(nn.Module):
@@ -115,13 +96,7 @@ class MyLSTM(nn.Module):
         self.all4 = nn.Linear((self.hidden_sz * 1 + self.input_sz  * 1), self.hidden_sz)
 
         self.all11 = nn.Linear((self.hidden_sz * 1 + self.g_sz),  self.hidden_sz)
-        # self.all22 = nn.Linear((self.hidden_sz * 1 + self.input_sz  * 1), self.hidden_sz)
-        # self.all33 = nn.Linear((self.hidden_sz * 1 + self.input_sz  * 1), self.hidden_sz)
         self.all44 = nn.Linear((self.hidden_sz * 1 + self.g_sz), self.hidden_sz)
-
-
-        # self.cell_1 = nn.Linear(self.hidden_sz, self.hidden_sz//2)
-        # self.cell = nn.Linear(self.input_sz  * 2, self.hidden_sz)
 
         self.init_weights()
         self.drop = nn.Dropout(0.5)
@@ -130,16 +105,9 @@ class MyLSTM(nn.Module):
         for weight in self.parameters():
             nn.init.uniform_(weight, -stdv, stdv)
 
-    # def myactivation(self, x):
-    #     v = (torch.relu(torch.tanh(x - 0.5)) + (1 - torch.relu(-torch.tanh(x - 0.5)))) / 2
-    #     return v
-    # def myactivation1(self, x):
-    #     v = (torch.relu(torch.tanh(x - 0.5))**0.00001 + (1 - torch.relu(-torch.tanh(x - 0.5))**0.00001)) / 2
-    #     return v
     def node_forward(self, xt, ht, Ct_x, mt, Ct_m):
 
         # # # new standard lstm
-        # Ct = torch.cat((self.cell(cell_seq[-1]), self.cell_1(cell_seq[-2])), dim=1)
         hx_concat = torch.cat((ht, xt), dim=1)
         hm_concat = torch.cat((ht, mt), dim=1)
         hxm_concat = torch.cat((ht, xt, mt), dim=1)
@@ -149,28 +117,17 @@ class MyLSTM(nn.Module):
         o = self.all2(hxm_concat)
         f = self.all3(hxm_concat)
         u = self.all4(hx_concat)
-
         ii = self.all11(hm_concat)
-        # oo = self.all22(hm_concat)
-        # ff = self.all33(hm_concat)
         uu = self.all44(hm_concat)
-
 
         i, f, o, u = torch.sigmoid(i), torch.sigmoid(f), torch.sigmoid(o), torch.tanh(u)
         ii,uu = torch.sigmoid(ii), torch.tanh(uu)
-
         Ct_x = i * u + ii * uu + f * Ct_x
-
-
         ht = o * torch.tanh(Ct_x) 
-        # ht = o * torch.tanh(Ct_x) +  torch.tanh(Ct_m) * g
-
-
 
         return ht, Ct_x, Ct_m 
 
     def forward(self, x, m, init_stat=None):
-        # normal forward 87.3
         batch_sz, seq_sz, _ = x.size()
         hidden_seq = []
         cell_seq = []

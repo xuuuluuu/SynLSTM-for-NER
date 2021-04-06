@@ -15,12 +15,6 @@ from typing import List
 from common.instance import Instance
 from termcolor import colored
 import os
-# torch.manual_seed(42)
-# np.random.seed(42)
-# random.seed(42)
-# torch.cuda.manual_seed(42)
-# torch.cuda.manual_seed_all(42)
-# torch.backends.cudnn.deterministic=True
 
 def setSeed(opt, seed):
     random.seed(seed)
@@ -38,11 +32,10 @@ def parse_arguments(parser):
     parser.add_argument('--device', type=str, default="cuda")
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--digit2zero', action="store_true", default=True)
-    parser.add_argument('--dataset', type=str, default="ontonotes")
+    parser.add_argument('--dataset', type=str, default="catalan")
     parser.add_argument('--affix', type=str, default="sd")
-    parser.add_argument('--embedding_file', type=str, default="data/glove.6B.100d.txt")
-    # parser.add_argument('--embedding_file', type=str, default=None)
-    parser.add_argument('--embedding_dim', type=int, default=100)
+    parser.add_argument('--embedding_file', type=str, default="data/cc.ca.300.vec")
+    parser.add_argument('--embedding_dim', type=int, default=300)
     parser.add_argument('--optimizer', type=str, default="sgd")
     parser.add_argument('--learning_rate', type=float, default=0.2) ##only for sgd now
     parser.add_argument('--momentum', type=float, default=0.0)

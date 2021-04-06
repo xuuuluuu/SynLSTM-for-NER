@@ -18,25 +18,19 @@ Bert-as-service
 ```
 python main.py  
 ```
-By default, the model runs on SemEval 2010 Task 1 Catalan dataset with provided hyper-parameters without BERT.  
+By default, the model eval our saved model (without BERT) on SemEval 2010 Task 1 Catalan dataset.  
 
-To run with other datasets:    
+To train the model with other datasets:    
 ```
-python main.py  --dataset=ontonotes
+python main.py --mode=train --dataset=ontonotes
 ```
 
 To run with BERT, first download the saved BERT features in the link, and then run with the command:
 ```
-python main.py  --context_emb=bert
+python main.py --mode=train --context_emb=bert
 ```
-
-To run with the saved best model:  
-```
-python main.py  --mode=test
-```
-The code will automatically load the corresponding saved model of datasets.
 
 
 # Related Repo
-The code are created based on [this repo](https://github.com/allanj/pytorch_lstmcrf).
+The code are created based on [the code](https://github.com/allanj/ner_with_dependency) of the paper "Dependency-Guided LSTM-CRF Model for Named Entity Recognition", EMNLP 2019.
 
