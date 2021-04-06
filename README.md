@@ -15,20 +15,25 @@ CUDA 10.1, 10.2
 
 
 # Running   
+
+Firstly, download the embedding files: [glove.6B.100d.txt](https://nlp.stanford.edu/projects/glove/) , [cc.ca.300.vec, cc.es.300.vec, cc.zh.300.vec](https://fasttext.cc/docs/en/crawl-vectors.html).
+
+By default, the model eval our saved model (without BERT) on SemEval 2010 Task 1 Spanish dataset.  
+
 ```
 python main.py  
 ```
-By default, the model eval our saved model (without BERT) on SemEval 2010 Task 1 Spanish dataset.  
 
-To train the model with other datasets (we use fasttext 300d for the Chinese, Spanish, and Catalan datasets.):    
+To train the model with other datasets:    
 ```
 python main.py --mode=train --dataset=ontonotes --embedding_file=glove.6B.100d.txt
 ```
 
-To train with BERT, first obtain the contextual embedding with the instructions in the **get_context_emb** folder, and then run with the command:
+To train with BERT, first obtain the contextual embedding with the instructions in the **get_context_emb** folder (The contextual embedding files for OntoNotes Engligh can be downloaded from [***here***](https://drive.google.com/drive/folders/1Eh3RR7QDmrjUhY6MCy7QlAcXPQrRC7Fy).), and then run with the command:
 ```
-python main.py --mode=train --context_emb=bert
+python main.py --mode=train --dataset=ontonotes --embedding_file=glove.6B.100d.txt --context_emb=bert 
 ```
+
 
 # About Dataset
 
