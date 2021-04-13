@@ -1,11 +1,11 @@
-# SynLSTM-for-NER
+# Better Feature Integration for Named Entity Recognition
 
-[NAACL 2021] [SynLSTM-for-NER (In NAACL 2021)]()
+[NAACL 2021] [Better Feature Integration for Named Entity Recognition (In NAACL 2021)](https://arxiv.org/abs/2104.05316)
 
 # Requirement
 Python 3.7
 
-Pytorch 1.4.0 or above
+Pytorch 1.4.0
 
 Transformers 3.3.1
 
