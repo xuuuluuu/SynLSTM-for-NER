@@ -16,7 +16,7 @@ CUDA 10.1, 10.2
 
 # Running   
 
-Firstly, download the embedding files: [glove.6B.100d.txt](https://nlp.stanford.edu/projects/glove/) , [cc.ca.300.vec, cc.es.300.vec, cc.zh.300.vec](https://fasttext.cc/docs/en/crawl-vectors.html).
+Firstly, download the embedding files: [glove.6B.100d.txt](https://nlp.stanford.edu/projects/glove/) , [cc.ca.300.vec, cc.es.300.vec, cc.zh.300.vec](https://fasttext.cc/docs/en/crawl-vectors.html), and put the files in the data folder.
 
 By default, the model eval our saved model (without BERT) on SemEval 2010 Task 1 Spanish dataset.  
 
