@@ -51,7 +51,7 @@ def parse_arguments(parser):
 
     ## model hyperparameter
     parser.add_argument('--hidden_dim', type=int, default=200, help="hidden size of the Syn-LSTM")
-    parser.add_argument('--num_lstm_layer', type=int, default=0, help="Do not use this flag when tesing our model, this is desinnged for baselines.")
+    parser.add_argument('--num_lstm_layer', type=int, default=0, help="Do not use this flag when tesing our model, this is designed for baselines.")
     parser.add_argument('--dep_emb_size', type=int, default=50, help="embedding size of dependency")
     parser.add_argument('--dep_hidden_dim', type=int, default=200, help="hidden size of gcn")
 
