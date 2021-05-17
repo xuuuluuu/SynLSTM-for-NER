@@ -50,10 +50,10 @@ def parse_arguments(parser):
     parser.add_argument('--eval_epoch', type=int, default=0, help="evaluate the dev set after this number of epoch")
 
     ## model hyperparameter
-    parser.add_argument('--hidden_dim', type=int, default=200, help="hidden size of the LSTM")
-    parser.add_argument('--num_lstm_layer', type=int, default=0, help="number of lstm layers")
+    parser.add_argument('--hidden_dim', type=int, default=200, help="hidden size of the Syn-LSTM")
+    parser.add_argument('--num_lstm_layer', type=int, default=0, help="Do not use this flag when tesing our model, this is desinnged for baselines.")
     parser.add_argument('--dep_emb_size', type=int, default=50, help="embedding size of dependency")
-    parser.add_argument('--dep_hidden_dim', type=int, default=200, help="hidden size of gcn, tree lstm")
+    parser.add_argument('--dep_hidden_dim', type=int, default=200, help="hidden size of gcn")
 
     ### NOTE: GCN parameters, useless if we are not using GCN
     parser.add_argument('--num_gcn_layers', type=int, default=2, help="number of gcn layers")
@@ -67,7 +67,7 @@ def parse_arguments(parser):
     parser.add_argument('--dropout', type=float, default=0.5, help="dropout for embedding")
     parser.add_argument('--use_char_rnn', type=int, default=1, choices=[0, 1], help="use character-level lstm, 0 or 1")
     # parser.add_argument('--use_head', type=int, default=0, choices=[0, 1], help="not use dependency")
-    parser.add_argument('--dep_model', type=str, default="dggcn", choices=["none", "dggcn", "dglstm"], help="dependency method")
+    parser.add_argument('--dep_model', type=str, default="dggcn", choices=["none", "dggcn", "dglstm"], help="dg_gcn mode consists of both GCN and Syn-LSTM")
     parser.add_argument('--inter_func', type=str, default="mlp", choices=["concatenation", "addition",  "mlp"], help="combination method, 0 concat, 1 additon, 2 gcn, 3 more parameter gcn")
     parser.add_argument('--context_emb', type=str, default="none", choices=["none", "bert", "elmo", "flair"], help="contextual word embedding")
 
