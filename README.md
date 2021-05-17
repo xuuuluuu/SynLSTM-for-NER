@@ -34,6 +34,7 @@ To train with BERT, first obtain the contextual embedding with the instructions 
 python main.py --mode=train --dataset=ontonotes --embedding_file=glove.6B.100d.txt --context_emb=bert 
 ```
 
+Note that the flag **--dep_model=dggcn** (by default) is where we call both GCN and our Syn-LSTM model. The flag **--num_lstm-layer** is designed for running some baselines, and should be set to 0 (by default) when testing our model. 
 
 # About Dataset
 
