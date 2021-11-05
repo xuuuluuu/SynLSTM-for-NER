@@ -1,6 +1,6 @@
 Install the bert-as-service
 
-Edit the dataset path in the bas.py
+Edit the dataset path in the get_context_emb.py file.
 
 Running the commands to start bert-as-service
 ```
